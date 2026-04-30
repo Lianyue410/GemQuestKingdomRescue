@@ -16457,85 +16457,31 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '  New Text
-
-    New Text
-
-    New Text
-
-    New TextNew TextNew Text
-
-    New
-    Text
-
-    New Text
-
-    New Text
-
-    New Text
-
-    New Text
-
-    New Text
-
-    New
-    Text
-
-    New Text
-
-    New TextNew TextNew Text
-
-    New Text
-
-    New Text
-
-    New
-    Text
-
-    New Text
-
-    New Text
-
-    New Text
-
-    New Text
-
-    New Text
-
-    New
-    TextNew TextNew Text
-
-    New Text
-
-    New Text
-
-    New Text
-
-    New Text
-
-    New
-    Text
-
-    New Text
-
-    New Text
-
-    New Text
-
-    New TextNew TextNew Text
-
-    New
-    Text
-
-    New Text
-
-    New Text
-
-    New Text
-
-    New Text
-
-    New Text'
+  m_text: "  Game Guide\n\n  Game Description\n  You will play as a brave princess
+    on a journey to save the                               \n  kingdom. Legend has
+    it that mysterious gems scattered                             \n  across different
+    regions hold powerful energy. Only by                             \n  collecting
+    all of them can the darkness threatening the                             \n 
+    kingdom be lifted.\n\n  Along the way, you will encounter enemies that will chase                            
+    \n  and attack you.\n  Defeat enemies to earn coins, unlock stronger attack                            
+    \n  abilities, and complete each level\u2019s trial to ultimately save                            
+    \n  the kingdom.\n\n  Controls\n  W Move Forward / S Move Backward\n  A D Turn
+    Left / Right\n  Shift Run\n  Space Jump\n  Hold Right Mouse Button to rotate
+    camera\n  Left Mouse Button to attack\n  1 2 3 Switch attack modes\n\n  Combat\n 
+    Attack 1: Basic attack (low damage)\n  Attack 2: Unlockable (medium damage)\n 
+    Attack 3: Unlockable (high damage)\n  Enemies will chase and attack you when
+    in range\n  Use movement and positioning to avoid continuous                            
+    \n  damage\n\n  Collection & Progression\n  Collect coins to unlock stronger
+    attack abilities\n  Green items restore health\n  Each level requires collecting
+    a specific number of gems\n\n  Level Objectives\n  Level 1: Learn basic controls
+    and combat\n  Level 2: More enemies and increased    difficulty\n  Level 3: Final
+    trial with the strongest enemies\n\n  Victory & Defeat\n  Health reaches 0 \u2192
+    Defeat\n  Collect all gems and reach the goal \u2192 Victory\n  Completing Level
+    3 \u2192 The kingdom is saved\n\n  Tips\n  Use running and movement to avoid
+    enemy attacks\n  Prioritize collecting coins to unlock stronger attacks\n  Use
+    the mini-map to track direction and objectives                             \n 
+    (mouse wheel to zoom in/out)\n  Adjust music and sound via the button in the
+    bottom-left                             \n  corner"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
