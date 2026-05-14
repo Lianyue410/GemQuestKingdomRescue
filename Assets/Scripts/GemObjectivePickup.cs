@@ -45,9 +45,13 @@ public class GemObjectivePickup : MonoBehaviour
     }
 
     collected = true;
+
     AudioManager.Instance?.PlayPickupSfx();
+
     SpawnPickupEffect();
+
     manager.CollectGem();
+
     Destroy(gameObject);
   }
 
@@ -55,30 +59,41 @@ public class GemObjectivePickup : MonoBehaviour
   {
     if (pickupEffect == null) return;
 
-    GameObject effectObject = Instantiate(pickupEffect.gameObject, transform.position, Quaternion.identity);
+    GameObject effectObject = Instantiate(
+        pickupEffect.gameObject,
+        transform.position,
+        Quaternion.identity
+    );
+
     ConfigureOneShotEffect(effectObject);
     PlayAllParticleSystems(effectObject);
+
     Destroy(effectObject, effectLifetime);
   }
 
   void ConfigureOneShotEffect(GameObject rootEffectObject)
   {
-    ParticleSystem[] particleSystems = rootEffectObject.GetComponentsInChildren<ParticleSystem>(true);
+    ParticleSystem[] particleSystems =
+        rootEffectObject.GetComponentsInChildren<ParticleSystem>(true);
 
     foreach (ParticleSystem particleSystem in particleSystems)
     {
+      // Stop first, because some particle prefabs may have Play On Awake enabled.
+      // This prevents Unity's warning about changing particle settings while playing.
+      particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+
       var main = particleSystem.main;
       main.loop = false;
       main.simulationSpace = ParticleSystemSimulationSpace.World;
-      main.duration = Mathf.Min(main.duration, effectLifetime);
 
-      particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+      particleSystem.Clear(true);
     }
   }
 
   void PlayAllParticleSystems(GameObject rootEffectObject)
   {
-    ParticleSystem[] particleSystems = rootEffectObject.GetComponentsInChildren<ParticleSystem>(true);
+    ParticleSystem[] particleSystems =
+        rootEffectObject.GetComponentsInChildren<ParticleSystem>(true);
 
     foreach (ParticleSystem particleSystem in particleSystems)
     {

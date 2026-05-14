@@ -14,6 +14,10 @@ public class EnemyHealth : MonoBehaviour
   public AnimationClip deathClip;
   public float destroyDelay = 3f;
 
+  [Header("Hit Reaction")]
+  public string hitState = "GetHit";
+  public float hitReactionDuration = 0.2f;
+
   [Header("UI")]
   public EnemyLifeBar lifeBar;
 
@@ -23,6 +27,7 @@ public class EnemyHealth : MonoBehaviour
   private Collider[] colliders;
   private PlayableGraph deathGraph;
   private bool isDead;
+  private float lastHitReactionTime;
 
   void Awake()
   {
@@ -55,13 +60,16 @@ public class EnemyHealth : MonoBehaviour
     int damageAmount = Mathf.Max(1, Mathf.RoundToInt(damage));
     currentHealth -= damageAmount;
     currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-
     UpdateLifeBar();
 
     if (currentHealth <= 0)
     {
       Die();
+      return;
     }
+
+    PlayHitReaction();
+    enemyAI?.NotifyDamaged(FindFirstObjectByType<PlayerHealth>()?.transform);
   }
 
   void UpdateLifeBar()
@@ -86,35 +94,6 @@ public class EnemyHealth : MonoBehaviour
     {
       lifeBar = bars[0];
     }
-  }
-
-  void Die()
-  {
-    if (isDead) return;
-
-    isDead = true;
-    currentHealth = 0;
-    UpdateLifeBar();
-
-    if (enemyAI != null)
-    {
-      enemyAI.enabled = false;
-    }
-
-    if (agent != null)
-    {
-      agent.isStopped = true;
-      agent.enabled = false;
-    }
-
-    foreach (Collider col in colliders)
-    {
-      col.enabled = false;
-    }
-
-    PlayDeathAnimation();
-
-    Destroy(gameObject, destroyDelay);
   }
 
   void PlayDeathAnimation()
@@ -146,8 +125,21 @@ public class EnemyHealth : MonoBehaviour
       playable.SetSpeed(1f);
 
       output.SetSourcePlayable(playable);
-    deathGraph.Play();
-    return;
+      deathGraph.Play();
+      return;
+    }
+  }
+
+  void PlayHitReaction()
+  {
+    if (animator == null) return;
+    if (Time.time - lastHitReactionTime < hitReactionDuration) return;
+
+    lastHitReactionTime = Time.time;
+
+    if (!string.IsNullOrEmpty(hitState) && animator.HasState(0, Animator.StringToHash(hitState)))
+    {
+      animator.CrossFadeInFixedTime(hitState, 0.04f, 0);
     }
   }
 
@@ -163,12 +155,63 @@ public class EnemyHealth : MonoBehaviour
   {
 #if UNITY_EDITOR
     if (deathClip != null) return;
+    if (animator != null && animator.runtimeAnimatorController != null)
+    {
+      foreach (AnimationClip clip in animator.runtimeAnimatorController.animationClips)
+      {
+        if (clip == null) continue;
+        if (string.Equals(clip.name, dieState, System.StringComparison.OrdinalIgnoreCase))
+        {
+          deathClip = clip;
+          return;
+        }
+      }
+    }
 
-    deathClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AnimationClip>(
-      "Assets/DogKnight/Animations/Die.anim"
-    );
+    string[] candidatePaths =
+    {
+      "Assets/DogKnight/Animations/Die.anim",
+      "Assets/Mini Legion Lich PBR HP Polyart/Animations/Lich/Die/die.anim",
+      "Assets/WizardPolyArt/Animations/Die.fbx"
+    };
+
+    foreach (string candidatePath in candidatePaths)
+    {
+      AnimationClip clip = UnityEditor.AssetDatabase.LoadAssetAtPath<AnimationClip>(candidatePath);
+      if (clip != null)
+      {
+        deathClip = clip;
+        return;
+      }
+    }
 #endif
   }
+
+  void Die()
+  {
+    if (isDead) return;
+
+    isDead = true;
+    currentHealth = 0;
+    UpdateLifeBar();
+    if (enemyAI != null)
+    {
+      enemyAI.enabled = false;
+    }
+
+    if (agent != null)
+    {
+      agent.isStopped = true;
+      agent.enabled = false;
+    }
+
+    foreach (Collider col in colliders)
+    {
+      col.enabled = false;
+    }
+
+    PlayDeathAnimation();
+
+    Destroy(gameObject, destroyDelay);
+  }
 }
-
-

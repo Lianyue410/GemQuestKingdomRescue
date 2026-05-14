@@ -98,8 +98,6 @@ public class PlayerAttackDamage : MonoBehaviour
 
     int attackType = GetResolvedAttackType();
 
-    SpawnAttackEffect(enemy.transform, attackType);
-
     if (animator != null)
     {
       string attackState = "hit01";
@@ -117,6 +115,7 @@ public class PlayerAttackDamage : MonoBehaviour
 
     yield return new WaitForSecondsRealtime(hitDelay);
 
+    SpawnAttackEffect(enemy.transform, attackType);
     ApplyPendingHit();
 
     float cooldownLeft = Mathf.Max(0f, attackCooldown - hitDelay);

@@ -40,6 +40,7 @@ public class HealthPickup : MonoBehaviour
     if (playerHealth == null || playerHealth.IsDead) return;
 
     collected = true;
+
     playerHealth.Heal(healAmount);
 
     if (pickupSound != null)
@@ -51,37 +52,51 @@ public class HealthPickup : MonoBehaviour
       AudioManager.Instance?.PlayPickupSfx();
     }
 
-    if (pickupEffect != null)
-    {
-      GameObject effectObject = Instantiate(pickupEffect.gameObject, playerHealth.transform);
-      effectObject.transform.localPosition = Vector3.up * 1.0f;
-      effectObject.transform.localRotation = Quaternion.identity;
-      ConfigureOneShotEffect(effectObject, true);
-      PlayAllParticleSystems(effectObject);
-      Destroy(effectObject, effectLifetime);
-    }
+    SpawnPickupEffect(playerHealth.transform);
 
     Destroy(gameObject);
   }
 
+  void SpawnPickupEffect(Transform playerTransform)
+  {
+    if (pickupEffect == null) return;
+
+    GameObject effectObject = Instantiate(pickupEffect.gameObject, playerTransform);
+
+    effectObject.transform.localPosition = Vector3.up * 1.0f;
+    effectObject.transform.localRotation = Quaternion.identity;
+
+    ConfigureOneShotEffect(effectObject, true);
+    PlayAllParticleSystems(effectObject);
+
+    Destroy(effectObject, effectLifetime);
+  }
+
   void ConfigureOneShotEffect(GameObject rootEffectObject, bool useLocalSpace)
   {
-    ParticleSystem[] particleSystems = rootEffectObject.GetComponentsInChildren<ParticleSystem>(true);
+    ParticleSystem[] particleSystems =
+        rootEffectObject.GetComponentsInChildren<ParticleSystem>(true);
 
     foreach (ParticleSystem particleSystem in particleSystems)
     {
+      // Stop first because some particle prefabs may have Play On Awake enabled.
+      // Do not change duration while the particle system is already playing.
+      particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+
       var main = particleSystem.main;
       main.loop = false;
-      main.simulationSpace = useLocalSpace ? ParticleSystemSimulationSpace.Local : ParticleSystemSimulationSpace.World;
-      main.duration = Mathf.Min(main.duration, effectLifetime);
+      main.simulationSpace = useLocalSpace
+          ? ParticleSystemSimulationSpace.Local
+          : ParticleSystemSimulationSpace.World;
 
-      particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+      particleSystem.Clear(true);
     }
   }
 
   void PlayAllParticleSystems(GameObject rootEffectObject)
   {
-    ParticleSystem[] particleSystems = rootEffectObject.GetComponentsInChildren<ParticleSystem>(true);
+    ParticleSystem[] particleSystems =
+        rootEffectObject.GetComponentsInChildren<ParticleSystem>(true);
 
     foreach (ParticleSystem particleSystem in particleSystems)
     {

@@ -12,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
   public string deathState = "ko_big";
   public AnimationClip deathClip;
   public float losePanelDelay = 2f;
+  public float damageInvulnerabilityTime = 0.45f;
 
   public EnemyLifeBar healthBar;
   public Animator animator;
@@ -21,6 +22,7 @@ public class PlayerHealth : MonoBehaviour
   private CharacterController characterController;
   private PlayableGraph deathGraph;
   private bool isDead;
+  private float nextDamageTime;
 
   public bool IsDead => isDead;
 
@@ -45,6 +47,9 @@ public class PlayerHealth : MonoBehaviour
   public void TakeDamage(int damage)
   {
     if (isDead) return;
+    if (Time.unscaledTime < nextDamageTime) return;
+
+    nextDamageTime = Time.unscaledTime + damageInvulnerabilityTime;
 
     currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
     UpdateHealthBar();
@@ -76,6 +81,15 @@ public class PlayerHealth : MonoBehaviour
     if (isDead) return;
 
     isDead = true;
+
+    EnemyAI[] enemies = FindObjectsByType<EnemyAI>(FindObjectsSortMode.None);
+    foreach (EnemyAI enemy in enemies)
+    {
+      if (enemy != null)
+      {
+        enemy.OnPlayerDefeated();
+      }
+    }
 
     if (playerController != null) playerController.enabled = false;
     if (playerAttackDamage != null) playerAttackDamage.enabled = false;

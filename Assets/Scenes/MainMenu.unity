@@ -6570,7 +6570,7 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1593360657}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.7194822}
+  m_AnchorMin: {x: 0, y: 0.77805257}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -11244,7 +11244,7 @@ RectTransform:
   m_Father: {fileID: 1797223243}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0.99999744, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -13311,7 +13311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -15503,8 +15503,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 349924340}
   m_HandleRect: {fileID: 349924339}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.2805178
+  m_Value: 1.0000002
+  m_Size: 0.22194742
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -33563,6 +33563,7 @@ MonoBehaviour:
   deathState: ko_big
   deathClip: {fileID: 7400000, guid: 57f8ce92feec6d047bfb7e7f2f03e049, type: 2}
   losePanelDelay: 2
+  damageInvulnerabilityTime: 0.45
   healthBar: {fileID: 0}
   animator: {fileID: 903159768}
   playerController: {fileID: 1787340153}
@@ -36116,8 +36117,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 521.8655, y: -1396.4}
-  m_SizeDelta: {x: 1043.731, y: 2792.8}
+  m_AnchoredPosition: {x: 521.8655, y: -1764.9}
+  m_SizeDelta: {x: 1043.731, y: 3529.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1919500108
 MonoBehaviour:
@@ -36139,31 +36140,39 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "  Game Guide\n\n  Game Description\n  You will play as a brave princess
-    on a journey to save the                               \n  kingdom. Legend has
-    it that mysterious gems scattered                             \n  across different
-    regions hold powerful energy. Only by                             \n  collecting
-    all of them can the darkness threatening the                             \n 
-    kingdom be lifted.\n\n  Along the way, you will encounter enemies that will chase                            
-    \n  and attack you.\n  Defeat enemies to earn coins, unlock stronger attack                            
-    \n  abilities, and complete each level\u2019s trial to ultimately save                            
-    \n  the kingdom.\n\n  Controls\n  W Move Forward / S Move Backward\n  A D Turn
-    Left / Right\n  Shift Run\n  Space Jump\n  Hold Right Mouse Button to rotate
-    camera\n  Left Mouse Button to attack\n  1 2 3 Switch attack modes\n\n  Combat\n 
-    Attack 1: Basic attack (low damage)\n  Attack 2: Unlockable (medium damage)\n 
-    Attack 3: Unlockable (high damage)\n  Enemies will chase and attack you when
-    in range\n  Use movement and positioning to avoid continuous                            
-    \n  damage\n\n  Collection & Progression\n  Collect coins to unlock stronger
-    attack abilities\n  Green items restore health\n  Each level requires collecting
-    a specific number of gems\n\n  Level Objectives\n  Level 1: Learn basic controls
-    and combat\n  Level 2: More enemies and increased    difficulty\n  Level 3: Final
-    trial with the strongest enemies\n\n  Victory & Defeat\n  Health reaches 0 \u2192
-    Defeat\n  Collect all gems and reach the goal \u2192 Victory\n  Completing Level
-    3 \u2192 The kingdom is saved\n\n  Tips\n  Use running and movement to avoid
-    enemy attacks\n  Prioritize collecting coins to unlock stronger attacks\n  Use
-    the mini-map to track direction and objectives                             \n 
-    (mouse wheel to zoom in/out)\n  Adjust music and sound via the button in the
-    bottom-left                             \n  corner"
+  m_text: "  <size=125%><b>Game Guide</b></size>\r\n\r\n  <size=100%><b>Game Description</b></size>\r\n 
+    You will play as a brave princess on a journey to save the\r\n  kingdom. Legend
+    has it that mysterious gems scattered\r\n  across different regions hold powerful
+    energy. Only by\r\n  collecting them and surviving each trial can the darkness\r\n 
+    threatening the kingdom be lifted.\r\n\r\n  Along the way, you will encounter
+    different enemy types\r\n  with their own behaviours and combat styles.\r\n 
+    Collect coins across the map to unlock stronger attack\r\n  abilities, gather
+    the required gems, and complete each\r\n  level\u2019s challenge to finally save
+    the kingdom.\r\n\r\n  <size=100%><b>Controls</b></size>\r\n  <b>W</b> Move Forward
+    / <b>S</b> Move Backward\r\n  <b>A D</b> Turn Left / Right\r\n  <b>Shift</b>
+    Run\r\n  <b>Space</b> Jump\r\n  <b>Hold Right Mouse Button</b> Rotate camera\r\n 
+    <b>Left Mouse Button</b> Attack\r\n  <b>1 2 3</b> Switch attack modes\r\n\r\n 
+    <size=100%><b>Combat</b></size>\r\n  <b>Attack 1</b>: Basic attack (low damage)\r\n 
+    <b>Attack 2</b>: Unlockable (medium damage)\r\n  <b>Attack 3</b>: Unlockable
+    (high damage)\r\n\r\n  <b>Dog</b>: Fast melee chaser\r\n  <b>Lich</b>: Patrols
+    and guards important items\r\n  <b>Wizard</b>: Stronger enemy that enters a second
+    phase\n  when health is low\r\n\r\n  Use movement and positioning to avoid continuous\r\n 
+    damage.\r\n\r\n  <size=100%><b>Collection & Progression</b></size>\r\n  Collect
+    coins placed in the level to unlock stronger attack\n  abilities.\r\n  Green
+    items restore health.\n  Each level requires collecting a specific number of
+    gems.\n  Reach the exit after completing the objective.\r\n\r\n  <size=100%><b>Level
+    Objectives</b></size>\r\n  <b>Level 1</b>: Collect 2 gems within 40 seconds\r\n 
+    <b>Level 2</b>: Collect 2 gems within 60 seconds\r\n  <b>Level 3</b>: Collect
+    3 gems within 90 seconds\r\n\r\n  Later levels contain stronger enemies and higher\n 
+    pressure.\r\n\r\n  <size=100%><b>Victory & Defeat</b></size>\r\n  Health reaches
+    0 -> Defeat\r\n  Time reaches 0 -> Defeat\r\n  Collect all required gems and
+    reach the goal -> Victory\r\n  Completing Level 3 -> The kingdom is saved\r\n\r\n 
+    <size=100%><b>Tips</b></size>\r\n  Use running and movement to avoid enemy attacks.\r\n 
+    Prioritize collecting coins to unlock stronger attacks.\r\n  Watch the countdown
+    timer in each level.\r\n  Be careful when the wizard enters its second combat\n 
+    phase.\r\n  Use the mini-map to track direction and objectives\n  (mouse wheel
+    to zoom in/out).\r\n  Adjust music and sound via the button in the bottom-left\n 
+    corner.\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -36172,8 +36181,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -36414,7 +36423,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 609487050}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999979
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -37336,8 +37345,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00040075305, y: 0.000022006}
-  m_SizeDelta: {x: -173.269, y: 2792.8}
+  m_AnchoredPosition: {x: 0.00023881409, y: -0.0006728734}
+  m_SizeDelta: {x: -173.269, y: 3529.8}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1996452752
 MonoBehaviour:

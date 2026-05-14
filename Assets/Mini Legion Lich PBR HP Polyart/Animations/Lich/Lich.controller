@@ -230,8 +230,7 @@ AnimatorState:
   m_Name: idle
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: 110100000}
+  m_Transitions: []
   m_StateMachineBehaviours: []
   m_Position: {x: 96, y: -36, z: 0}
   m_IKOnFeet: 0
@@ -257,8 +256,7 @@ AnimatorState:
   m_Name: victory
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: 110194893}
+  m_Transitions: []
   m_StateMachineBehaviours: []
   m_Position: {x: 348, y: 96, z: 0}
   m_IKOnFeet: 0
@@ -284,8 +282,7 @@ AnimatorState:
   m_Name: walk
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: 110171270}
+  m_Transitions: []
   m_StateMachineBehaviours: []
   m_Position: {x: 348, y: 156, z: 0}
   m_IKOnFeet: 0
@@ -311,8 +308,7 @@ AnimatorState:
   m_Name: die
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: 110162901}
+  m_Transitions: []
   m_StateMachineBehaviours: []
   m_Position: {x: 96, y: 276, z: 0}
   m_IKOnFeet: 0
@@ -338,8 +334,7 @@ AnimatorState:
   m_Name: GetHit
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: 110103831}
+  m_Transitions: []
   m_StateMachineBehaviours: []
   m_Position: {x: 348, y: 36, z: 0}
   m_IKOnFeet: 0
@@ -365,8 +360,7 @@ AnimatorState:
   m_Name: attack02
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: 110125320}
+  m_Transitions: []
   m_StateMachineBehaviours: []
   m_Position: {x: 348, y: -36, z: 0}
   m_IKOnFeet: 0
@@ -392,8 +386,7 @@ AnimatorState:
   m_Name: run
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: 110160353}
+  m_Transitions: []
   m_StateMachineBehaviours: []
   m_Position: {x: 300, y: 216, z: 0}
   m_IKOnFeet: 0
@@ -419,8 +412,7 @@ AnimatorState:
   m_Name: attack01
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: 110106514}
+  m_Transitions: []
   m_StateMachineBehaviours: []
   m_Position: {x: 228, y: -108, z: 0}
   m_IKOnFeet: 0
